@@ -65,8 +65,8 @@ tabs, and the box at the bottom lets you try them out.
 | Setting | Default | What it does |
 | --- | --- | --- |
 | Keys | `j` `k` `d` `u` | Scroll down, up, half page down, half page up. Click a box and press a key; QWERTY and Colemak presets |
-| j / k step | 150 px | How far one press of scroll down/up goes |
-| d / u distance | 50% | How much of the visible height half page down/up scroll |
+| Scroll step | 150 px | How far one press of scroll down/up goes |
+| Half page distance | 50% | How much of the visible height half page down/up scroll |
 | Chain window | 200 ms | Presses closer together than this add to the same glide |
 
 Settings are saved with Firefox Sync if you use it.
