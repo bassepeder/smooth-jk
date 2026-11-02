@@ -12,6 +12,9 @@ so the scroll keeps gliding and slows down gently at the end.
 | `j` / `k` | Scroll down / up 150px |
 | `d` / `u` | Scroll down / up half a screen |
 
+All four keys can be changed in the settings, and there's a one-click Colemak preset
+(`n` / `e` / `s` / `l`, the same physical keys).
+
 It leaves keys alone while you're typing in a text field, and it ignores Cmd, Ctrl and Alt
 combinations. Vimium still gets the keys first, so link hints and find mode keep working.
 It scrolls the box you last clicked in, then moves out to the page once that box hits its
@@ -19,7 +22,8 @@ end. On web apps that lock the page, it scrolls the largest visible pane.
 
 ## 1. Unmap the keys in Vimium
 
-Open Vimium's options and add these lines under **Custom key mappings**:
+Open Vimium's options and add these lines under **Custom key mappings** (use your own keys if you changed them, e.g.
+`n e s l` for the Colemak preset):
 
 ```
 unmap j
@@ -60,8 +64,9 @@ tabs, and the box at the bottom lets you try them out.
 
 | Setting | Default | What it does |
 | --- | --- | --- |
-| j / k step | 150 px | How far one press of `j`/`k` scrolls |
-| d / u distance | 50% | How much of the visible height `d`/`u` scroll |
+| Keys | `j` `k` `d` `u` | Scroll down, up, half page down, half page up. Click a box and press a key; QWERTY and Colemak presets |
+| j / k step | 150 px | How far one press of scroll down/up goes |
+| d / u distance | 50% | How much of the visible height half page down/up scroll |
 | Chain window | 200 ms | Presses closer together than this add to the same glide |
 
 Settings are saved with Firefox Sync if you use it.

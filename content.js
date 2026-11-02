@@ -12,6 +12,10 @@
     step: 150,         // px per j/k (vimari default)
     pageFraction: 0.5, // d/u scroll this fraction of the visible height
     resetMs: 200,      // forget the accumulated target after this much idle time
+    keyDown: "j",
+    keyUp: "k",
+    keyHalfDown: "d",
+    keyHalfUp: "u",
   };
   let prefs = { ...DEFAULTS };
 
@@ -26,13 +30,20 @@
     });
   }
 
-  // key -> direction, and distance in px given the element being scrolled
-  const KEYS = {
-    j: { dir: 1, size: () => prefs.step },
-    k: { dir: -1, size: () => prefs.step },
-    d: { dir: 1, size: (el) => visibleHeight(el) * prefs.pageFraction },
-    u: { dir: -1, size: (el) => visibleHeight(el) * prefs.pageFraction },
+  // pref holding the bound key -> direction, and distance in px given the element
+  const ACTIONS = {
+    keyDown: { dir: 1, size: () => prefs.step },
+    keyUp: { dir: -1, size: () => prefs.step },
+    keyHalfDown: { dir: 1, size: (el) => visibleHeight(el) * prefs.pageFraction },
+    keyHalfUp: { dir: -1, size: (el) => visibleHeight(el) * prefs.pageFraction },
   };
+
+  function actionFor(key) {
+    for (const [pref, action] of Object.entries(ACTIONS)) {
+      if (prefs[pref] && prefs[pref] === key) return action;
+    }
+    return null;
+  }
 
   const NON_TEXT_INPUTS = new Set([
     "button", "checkbox", "color", "file", "image", "radio", "range", "reset", "submit",
@@ -145,7 +156,7 @@
   // own j/k shortcuts.
   document.addEventListener("keydown", (e) => {
     if (e.defaultPrevented || e.ctrlKey || e.metaKey || e.altKey || e.isComposing) return;
-    const action = KEYS[e.key];
+    const action = actionFor(e.key);
     if (!action || isEditable(deepActiveElement())) return;
     e.preventDefault();
     e.stopImmediatePropagation();
