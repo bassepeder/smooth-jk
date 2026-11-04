@@ -23,10 +23,22 @@
   const savedNote = document.getElementById("saved");
   let savedTimer = null;
   const keys = {};
+  const ranges = {};
+
+  function showResetButtons() {
+    for (const btn of document.querySelectorAll(".reset-one")) {
+      const target = btn.dataset.reset;
+      const names = target === "keys" ? KEYS : [target];
+      const current = target === "keys" ? keys : ranges;
+      btn.hidden = names.every((n) => current[n] === DEFAULTS[n]);
+    }
+  }
 
   function showRange(key, value) {
     document.getElementById(key).value = value;
     document.getElementById(`${key}-out`).textContent = FORMAT[key](value);
+    ranges[key] = value;
+    showResetButtons();
   }
 
   function showKeys() {
@@ -35,6 +47,7 @@
       const p = PRESETS[btn.dataset.preset];
       btn.setAttribute("aria-pressed", String(KEYS.every((k) => keys[k] === p[k])));
     }
+    showResetButtons();
   }
 
   function flashSaved() {
@@ -88,6 +101,18 @@
 
   for (const btn of document.querySelectorAll(".preset")) {
     btn.addEventListener("click", () => saveKeys({ ...PRESETS[btn.dataset.preset] }));
+  }
+
+  for (const btn of document.querySelectorAll(".reset-one")) {
+    btn.addEventListener("click", () => {
+      const target = btn.dataset.reset;
+      if (target === "keys") {
+        saveKeys(Object.fromEntries(KEYS.map((k) => [k, DEFAULTS[k]])));
+      } else {
+        showRange(target, DEFAULTS[target]);
+        browser.storage.sync.set({ [target]: DEFAULTS[target] }).then(flashSaved);
+      }
+    });
   }
 
   document.getElementById("reset").addEventListener("click", () => {
