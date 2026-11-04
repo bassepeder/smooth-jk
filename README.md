@@ -1,4 +1,4 @@
-# Smooth j/k
+# Smooth Keyscroll
 
 Vimari-style smooth scrolling for Firefox, meant to run alongside Vimium.
 
@@ -59,7 +59,7 @@ auto-update unlisted add-ons that have no update URL, so open the new `.xpi` the
 
 ## 3. Settings
 
-Open `about:addons`, then Smooth j/k → **Preferences**. Changes apply right away in open
+Open `about:addons`, then Smooth Keyscroll → **Preferences**. Changes apply right away in open
 tabs, and the box at the bottom lets you try them out.
 
 | Setting | Default | What it does |

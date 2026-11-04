@@ -1,11 +1,12 @@
 {
   "manifest_version": 2,
-  "name": "Smooth j/k",
+  "name": "Smooth Keyscroll",
   "version": "1.2.0",
-  "description": "Vimari-style smooth scrolling on j/k/d/u (rebindable), meant to run alongside Vimium.",
+  "author": "bassepeder",
+  "description": "Vimari-style smooth keyboard scrolling with rebindable keys, meant to run alongside Vimium.",
   "browser_specific_settings": {
     "gecko": {
-      "id": "smooth-jk@personal.addon",
+      "id": "smooth-keyscroll@bassepeder",
       "strict_min_version": "140.0",
       "data_collection_permissions": {
         "required": ["none"]
